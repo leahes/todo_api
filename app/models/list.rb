@@ -1,4 +1,4 @@
 class List < ApplicationRecord
-  belongs_to :user, required: true
+  belongs_to :user
   has_many :items
 end
