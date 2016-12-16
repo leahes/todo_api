@@ -3,9 +3,14 @@ class ApiController < ApplicationController
 
   private
 
+  def current_user
+    @current_user
+  end
+
   def authenticated?
     authenticate_or_request_with_http_basic do |username, password|
-      User.where(username: username, password: password).present?
+      @current_user = User.find_by( username: username, password: password )
+      @current_user.present?
     end
   end
 end
