@@ -10,9 +10,8 @@ class Api::ItemsController < ApiController
       status: :unprocessable_entity
     end
   end
-  
+
   def update
-    # item = current_user.lists.find(params[:id]).items.find(params[:id])
     @item = Item.find(params[:id])
     raise unless @item.list.user == current_user
     if @item.update(item_params)
@@ -35,7 +34,9 @@ class Api::ItemsController < ApiController
     end
   end
 
+  private
+
   def item_params
-    params.require(:item).permit(:name,:status)
+    params.require(:item).permit(:userame,:done)
   end
 end
