@@ -12,6 +12,6 @@ class Api::ItemsController < ApiController
   end
 
   def item_params
-    params.require(:item).permit(:name,:status)
+    params.require(:item).permit(:name,:done)
   end
 end
