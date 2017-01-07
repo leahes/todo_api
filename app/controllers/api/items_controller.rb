@@ -37,10 +37,6 @@ class Api::ItemsController < ApiController
   private
 
   def item_params
-<<<<<<< HEAD
-    params.require(:item).permit(:name,:done)
-=======
     params.require(:item).permit(:userame,:done)
->>>>>>> 6
   end
 end

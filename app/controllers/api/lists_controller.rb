@@ -16,19 +16,6 @@ class Api::ListsController < ApiController
     end
   end
 
-<<<<<<< HEAD
-  def destroy
-    begin
-      list = current_user.lists.find(params[:id])
-      list.destroy
-
-      render json: {}, status: :no_content
-    rescue ActiveRecord::RecordNotFound
-      render :json => {}, :status => :not_found
-    end
-  end
-  
-=======
     def update
      list = List.find(params[:id])
      raise unless list.user == current_user
@@ -50,7 +37,6 @@ class Api::ListsController < ApiController
       end
     end
 
->>>>>>> 6
   private
 
   def list_params
