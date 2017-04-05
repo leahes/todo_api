@@ -12,30 +12,28 @@ class Api::ListsController < ApiController
       render json: list
     else
       render json: { errors: list.errors.full_messages },
-      status: :unprocessable_entity
+             status: :unprocessable_entity
     end
   end
 
-    def update
-     list = List.find(params[:id])
-     raise unless list.user == current_user
-     if list.update(list_params)
-       render json: list
-     else
-       render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
-     end
-   end
-
-    def destroy
-      begin
-        list = current_user.lists.find(params[:id])
-        list.destroy
-
-        render json: {}, status: :no_content
-      rescue ActiveRecord::RecordNotFound
-        render :json => {}, :status => :not_found
-      end
+  def update
+    list = List.find(params[:id])
+    raise unless list.user == current_user
+    if list.update(list_params)
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
     end
+ end
+
+  def destroy
+    list = current_user.lists.find(params[:id])
+    list.destroy
+
+    render json: {}, status: :no_content
+  rescue ActiveRecord::RecordNotFound
+    render json: {}, status: :not_found
+  end
 
   private
 

@@ -7,6 +7,5 @@ class List < ApplicationRecord
   validates :permissions, presence: true
 
   validates :permissions, inclusion: { in: %w(private viewable open),
-    message: "%{value} is not a valid permission" }
-
+                                       message: '%{value} is not a valid permission' }
 end
